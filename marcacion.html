@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Consulta de Marcación por DNI</title>
+  <meta name="theme-color" content="#E53935" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="marcacion.css" />
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+  <!-- fondo rotatorio -->
+  <div class="bg-container"></div>
+  <!-- modal de aviso -->
+   <!-- Modal de Aviso -->
+    <div id="updateInfoModal" class="modal">
+      <div class="modal-content">
+        <p>
+          <span class="blink">Aviso!!!</span>Este reporte se actualizará todos los viernes. Se considerará toda la información<br>
+          correspondiente al periodo vigente.
+        </p>
+        <button id="closeModal">Aceptar</button>
+      </div>
+    </div>
+
+  <!-- overlay + spinner -->
+  <div id="overlay"><div class="spinner"></div></div>
+
+  <!-- contenido principal -->
+  <div class="container">
+    <header class="header">
+      <h1 class="site-title">📋 Consulta de Marcación</h1>
+      <form id="searchForm" class="search-form">
+        <input
+          id="dniInput"
+          type="text"
+          inputmode="numeric"
+          pattern="\d{8}"
+          maxlength="8"
+          placeholder="DNI (8 dígitos)"
+          required
+        />
+        <button type="submit">Buscar</button>
+      </form>
+      <p id="message" class="message"></p>
+    </header>
+    <button id="btn-regresar" class="btn-regresar">
+      <span class="icon">←</span>
+      Regresar
+    </button>
+    
+    <main>
+      <div id="result">
+        <div class="table-wrapper"></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="marcacion.js"></script>
+</body>
+</html>
+

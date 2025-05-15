@@ -1,0 +1,137 @@
+<!-- asistencia.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Consulta de Asistencia – Calendario 2025</title>
+  <meta name="theme-color" content="#E53935" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="asistencia.css" />
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+
+  <div class="container">
+
+    <!-- Modal de Aviso -->
+    <div id="updateInfoModal" class="modal">
+      <div class="modal-content">
+        <p>
+          <span class="blink">Aviso!!!</span> El reporte de asistencia mensual se actualizara el día 27 de cada mes, <br>
+          correspondiente al periodo del 22 del mes anterior al 21 del mes en curso.
+        </p>
+        <button id="closeModal">Aceptar</button>
+      </div>
+    </div>
+
+    <!-- Overlay de carga -->
+    <div id="overlay"><div class="spinner"></div></div>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="site-title">
+        <span class="logo-icon">📆</span>
+        <span class="title-red">Consulta de Asistencia</span>
+      </h1>
+      <form id="searchForm" class="search-form">
+        <input
+          id="dniInput"
+          type="text"
+          inputmode="numeric"
+          pattern="\d{8}"
+          maxlength="8"
+          placeholder="DNI (8 dígitos)"
+          required
+        />
+        <button type="submit">Buscar</button>
+        <img src="tu-icono.png" alt="Icono búsqueda" class="search-icon" />
+      </form>
+        <!-- Botón Regresar debajo del formulario -->
+        <button id="btn-regresar" class="btn-regresar">
+          <span class="icon">←</span> Regresar
+        </button>
+
+      <p id="message" class="message"></p>
+      <p id="fullName" class="full-name"></p>
+    </header>
+
+    <main>
+      <section class="calendar-container">
+        <!-- Marzo 2025 -->
+        <div class="month-calendar" data-month="3">
+          <h2>Marzo 2025</h2>
+          <div class="weekday-header">
+            <div>Lun</div><div>Mar</div><div>Mié</div><div>Jue</div><div>Vie</div><div>Sáb</div><div>Dom</div>
+          </div>
+          <div class="days-grid">
+            <div class="empty"></div><div class="empty"></div><div class="empty"></div>
+            <div class="empty"></div><div class="empty"></div>
+            <div class="day skeleton" data-day="22"><span class="date">22</span><span class="value"></span></div>
+            <div class="day skeleton" data-day="23"><span class="date">23</span><span class="value"></span></div>
+            <div class="day skeleton" data-day="24"><span class="date">24</span><span class="value"></span></div>
+            <div class="day skeleton" data-day="25"><span class="date">25</span><span class="value"></span></div>
+            <div class="day skeleton" data-day="26"><span class="date">26</span><span class="value"></span></div>
+            <div class="day skeleton" data-day="27"><span class="date">27</span><span class="value"></span></div>
+            <div class="day skeleton" data-day="28"><span class="date">28</span><span class="value"></span></div>
+            <div class="day skeleton" data-day="29"><span class="date">29</span><span class="value"></span></div>
+            <div class="day skeleton" data-day="30"><span class="date">30</span><span class="value"></span></div>
+            <div class="day skeleton" data-day="31"><span class="date">31</span><span class="value"></span></div>
+          </div>
+        </div>
+
+        <!-- Abril 2025 -->
+        <div class="month-calendar" data-month="4">
+          <h2>Abril 2025</h2>
+          <div class="weekday-header">
+            <div>Lun</div><div>Mar</div><div>Mié</div><div>Jue</div><div>Vie</div><div>Sáb</div><div>Dom</div>
+          </div>
+          <div class="days-grid">
+            <div class="empty"></div>
+            <div class="day skeleton" data-day="01"><span class="date">01</span><span class="value"></span></div>
+            <div class="day skeleton" data-day="02"><span class="date">02</span><span class="value"></span></div>
+            <div class="day skeleton" data-day="03"><span class="date">03</span><span class="value"></span></div>
+            <div class="day skeleton" data-day="04"><span class="date">04</span><span class="value"></span></div>
+            <div class="day skeleton" data-day="05"><span class="date">05</span><span class="value"></span></div>
+            <div class="day skeleton" data-day="06"><span class="date">06</span><span class="value"></span></div>
+            <div class="day skeleton" data-day="07"><span class="date">07</span><span class="value"></span></div>
+            <div class="day skeleton" data-day="08"><span class="date">08</span><span class="value"></span></div>
+            <div class="day skeleton" data-day="09"><span class="date">09</span><span class="value"></span></div>
+            <div class="day skeleton" data-day="10"><span class="date">10</span><span class="value"></span></div>
+            <div class="day skeleton" data-day="11"><span class="date">11</span><span class="value"></span></div>
+            <div class="day skeleton" data-day="12"><span class="date">12</span><span class="value"></span></div>
+            <div class="day skeleton" data-day="13"><span class="date">13</span><span class="value"></span></div>
+            <div class="day skeleton" data-day="14"><span class="date">14</span><span class="value"></span></div>
+            <div class="day skeleton" data-day="15"><span class="date">15</span><span class="value"></span></div>
+            <div class="day skeleton" data-day="16"><span class="date">16</span><span class="value"></span></div>
+            <div class="day skeleton" data-day="17"><span class="date">17</span><span class="value"></span></div>
+            <div class="day skeleton" data-day="18"><span class="date">18</span><span class="value"></span></div>
+            <div class="day skeleton" data-day="19"><span class="date">19</span><span class="value"></span></div>
+            <div class="day skeleton" data-day="20"><span class="date">20</span><span class="value"></span></div>
+            <div class="day skeleton" data-day="21"><span class="date">21</span><span class="value"></span></div>
+          </div>
+        </div>
+
+        <!-- Panel de estadísticas -->
+        <div class="stats-panel">
+          <div class="stat">
+            <h3># Total Asistencia Validada</h3>
+            <p id="stat-validated">–</p>
+          </div>
+          <div class="stat">
+            <h3># No Marcó</h3>
+            <p id="stat-no-show">–</p>
+          </div>
+          <div class="stat">
+            <h3># Debió Marcar</h3>
+            <p id="stat-should-show">–</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="asistencia.js"></script>
+</body>
+</html>
+
